@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext {
+        app = [compileSdk: 26,
+               buildTools: "26.0.0",
+               minSdk    : 19,
+               targetSdk : 26,
+               vcode     : 1,
+               vname     : "1.0.0"]
+
+        versions = [Support    : "26.+",
+                    Constraint : "1.0.2",
+                    Multidex   : "1.0.1",
+                    ButterKnife: "8.5.1",
+                    RxJava2    : "2.1.1",
+                    RxAndroid  : "2.0.1",
+                    Retrofit2  : "2.3.0",
+                    Okhttp     : "3.6.0",
+                    Leakcanary : "1.5.1",
+                    Gson       : "2.8.1",
+                    Glide      : "4.0.0-RC1",
+                    Tray       : "0.12.0",//SharedPreferences用来存储一些键值对, 但是却不支持跨进程使用,这是一个用ContentProvider实现的, 可以像SharedPreferences一样用于存储键值对, 支持跨进程使用
+                    Rxdownload2: "2.0.4",//基于rxjava2的下载
+                    Permission : "1.0.8"]//'com.yanzhenjie:permission,运行时权限处理最适合国产系统
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "com.jakewharton:butterknife-gradle-plugin:$rootProject.versions.ButterKnife"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
