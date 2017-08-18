@@ -15,7 +15,7 @@ import com.cactus.ctbaselibrary.BuildConfig;
  */
 public class LogUtils {
 
-    private static boolean enableLog = BuildConfig.ENABLE_LOG;
+    public static boolean enableLog = BuildConfig.ENABLE_LOG;
 
     public static void warn(String tag, String message) {
         if (enableLog && !TextUtils.isEmpty(tag) && !TextUtils.isEmpty(message)) {
