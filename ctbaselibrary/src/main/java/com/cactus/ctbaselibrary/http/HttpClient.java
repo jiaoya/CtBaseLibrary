@@ -42,7 +42,7 @@ public enum HttpClient {
                     .writeTimeout(HttpConfig.WRITE_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(HttpConfig.READ_TIMEOUT, TimeUnit.SECONDS)
                     .cookieJar(new CustomCookieJar(new CookieManager(HttpConfig.persistentCookieStore, CookiePolicy.ACCEPT_ALL)))
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .addInterceptor(new UserAgentInterceptor(HttpConfig.userAgentString))
                     .addInterceptor(new AppVersionInterceptor(HttpConfig.appVersion))
                     .addInterceptor(new Interceptor() {
@@ -69,7 +69,7 @@ public enum HttpClient {
                     .writeTimeout(HttpConfig.WRITE_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(HttpConfig.READ_TIMEOUT, TimeUnit.SECONDS)
                     .cookieJar(new CustomCookieJar(new CookieManager(HttpConfig.persistentCookieStore, CookiePolicy.ACCEPT_ALL)))
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .addInterceptor(new UserAgentInterceptor(HttpConfig.userAgentString))
                     .addInterceptor(new AppVersionInterceptor(HttpConfig.appVersion))
                     .build();
@@ -79,7 +79,7 @@ public enum HttpClient {
 
     public OkHttpClient getOkHttpClient() {
         try {
-            UserAgentInterceptor userAgentInterceptor = (UserAgentInterceptor) client.interceptors().get(1);
+            UserAgentInterceptor userAgentInterceptor = (UserAgentInterceptor) client.interceptors().get(0);
             if (HttpConfig.isNeadUserAgent && StringUtils.checkNull(userAgentInterceptor.getUserAgentHeaderValue())) {//如果UserAgent为空，则重新初始化
                 HttpConfig.setUserAgent();
                 init();

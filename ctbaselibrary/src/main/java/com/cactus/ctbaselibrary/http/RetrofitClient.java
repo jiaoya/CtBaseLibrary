@@ -29,7 +29,6 @@ public class RetrofitClient {
                     .client(HttpClient.INSTANCE.getOkHttpClient())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    //.addConverterFactory(ScalarsConverterFactory.create())
                     .build();
         }
         return retrofit;
