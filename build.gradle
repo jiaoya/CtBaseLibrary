@@ -5,7 +5,7 @@ buildscript {
     ext {
         app = [compileSdk: 26,
                buildTools: "26.0.0",
-               minSdk    : 19,
+               minSdk    : 15,
                targetSdk : 26,
                vcode     : 1,
                vname     : "1.0.0"]

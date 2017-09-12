@@ -40,19 +40,19 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //Android系统
     compile "com.android.support:appcompat-v7:$rootProject.versions.Support"
-    compile "com.android.support:support-v4:$rootProject.versions.Support"
-    compile "com.android.support:percent:$rootProject.versions.Support"
-    compile "com.android.support:design:$rootProject.versions.Support"
-    compile "com.android.support.constraint:constraint-layout:$rootProject.versions.Constraint"
+    provided "com.android.support:support-v4:$rootProject.versions.Support"
+    provided "com.android.support:percent:$rootProject.versions.Support"
+    provided "com.android.support:design:$rootProject.versions.Support"
+    provided "com.android.support.constraint:constraint-layout:$rootProject.versions.Constraint"
 
     //第三方基础库
-    compile "io.reactivex.rxjava2:rxjava:$rootProject.versions.RxJava2"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.versions.RxAndroid"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.versions.Retrofit2"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.versions.Retrofit2"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.versions.Retrofit2"
-    compile "com.squareup.retrofit2:converter-scalars:$rootProject.versions.Retrofit2"
-    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.versions.Okhttp"
+    provided "io.reactivex.rxjava2:rxjava:$rootProject.versions.RxJava2"
+    provided "io.reactivex.rxjava2:rxandroid:$rootProject.versions.RxAndroid"
+    provided "com.squareup.retrofit2:retrofit:$rootProject.versions.Retrofit2"
+    provided "com.squareup.retrofit2:adapter-rxjava2:$rootProject.versions.Retrofit2"
+    provided "com.squareup.retrofit2:converter-gson:$rootProject.versions.Retrofit2"
+    provided "com.squareup.retrofit2:converter-scalars:$rootProject.versions.Retrofit2"
+    provided "com.squareup.okhttp3:logging-interceptor:$rootProject.versions.Okhttp"
     compile "com.jakewharton:butterknife:$rootProject.versions.ButterKnife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.versions.ButterKnife"
     compile "com.google.code.gson:gson:$rootProject.versions.Gson"
@@ -60,5 +60,4 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.versions.Glide"
     compile "net.grandcentrix.tray:tray:$rootProject.versions.Tray"
     compile "com.yanzhenjie:permission:$rootProject.versions.Permission"
-    //compile "zlc.season:rxdownload2:$rootProject.versions.Rxdownload2"
 }

@@ -2,6 +2,7 @@ package com.cactus.ctbaselibrary.http;
 
 
 import com.cactus.ctbaselibrary.http.cookie.CustomCookieJar;
+import com.cactus.ctbaselibrary.http.cookie.PersistentCookieStore;
 import com.cactus.ctbaselibrary.http.cookie.TokenCache;
 import com.cactus.ctbaselibrary.http.interceptor.AppVersionInterceptor;
 import com.cactus.ctbaselibrary.http.interceptor.UserAgentInterceptor;
@@ -74,13 +75,16 @@ public enum HttpClient {
                     .addInterceptor(new AppVersionInterceptor(HttpConfig.appVersion))
                     .build();
         }
+        PersistentCookieStore.tokenChange = false;
 
     }
 
     public OkHttpClient getOkHttpClient() {
         try {
             UserAgentInterceptor userAgentInterceptor = (UserAgentInterceptor) client.interceptors().get(0);
-            if (HttpConfig.isNeadUserAgent && StringUtils.checkNull(userAgentInterceptor.getUserAgentHeaderValue())) {//如果UserAgent为空，则重新初始化
+            if (HttpConfig.isNeadUserAgent &&
+                    StringUtils.checkNull(userAgentInterceptor.getUserAgentHeaderValue())
+                    || PersistentCookieStore.tokenChange) {//如果UserAgent为空，则重新初始化
                 HttpConfig.setUserAgent();
                 init();
             }

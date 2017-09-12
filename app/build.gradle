@@ -31,4 +31,13 @@ dependencies {
 
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.versions.Leakcanary"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.versions.Leakcanary"
+
+
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.versions.RxJava2"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.versions.RxAndroid"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.versions.Retrofit2"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.versions.Retrofit2"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.versions.Retrofit2"
+    compile "com.squareup.retrofit2:converter-scalars:$rootProject.versions.Retrofit2"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.versions.Okhttp"
 }

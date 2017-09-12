@@ -40,6 +40,7 @@ public class PersistentCookieStore implements CookieStore {
     private static final String TOKEN_NAME = "token";
     private final HashMap<String, ConcurrentHashMap<String, HttpCookie>> cookies;
     private final SharedPreferences cookiePrefs;
+    public static boolean tokenChange = false;
 
     /**
      * Construct a persistent cookie store.
@@ -56,6 +57,7 @@ public class PersistentCookieStore implements CookieStore {
             prefsWriter.putString(HttpConfig.COOKIE_KEY_URL, TOKEN_NAME);
             prefsWriter.putString(COOKIE_NAME_PREFIX + TOKEN_NAME, encodeCookie(new SerializableHttpCookie(cookie)));
             prefsWriter.apply();
+            tokenChange = true;
         }
 
         // Load any previously stored cookies into the store

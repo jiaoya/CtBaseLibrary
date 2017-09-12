@@ -52,6 +52,36 @@ public class KeyBoardUtils {
         });
     }
 
+    public static void softKeyboardHeightListener(final Activity activity, final OnSoftKeyboardChangeListener listener) {
+        final View decorView = activity.getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            int previousKeyboardHeight = -1;
+            boolean keyBoardIsShow = false;
+
+            @Override
+            public void onGlobalLayout() {
+                Rect rect = new Rect();
+                decorView.getWindowVisibleDisplayFrame(rect);
+                int displayHeight = rect.bottom - rect.top;
+                int height = decorView.getHeight();
+                int keyboardHeight = height - displayHeight;
+                if (previousKeyboardHeight != keyboardHeight) {
+                    boolean hide = (double) displayHeight / height > 0.8;
+                    if (hide) {
+                        listener.onSoftKeyBoardChange(keyboardHeight, false);
+                        keyBoardIsShow = true;
+                    } else if (!hide) {
+                        listener.onSoftKeyBoardChange(keyboardHeight, true);
+                        keyBoardIsShow = false;
+                    }
+
+                    //listener.onSoftKeyBoardChange(keyboardHeight, !hide);
+                }
+                previousKeyboardHeight = height;
+            }
+        });
+    }
+
     public interface OnSoftKeyboardChangeListener {
         void onSoftKeyBoardChange(int softKeybardHeight, boolean visible);
     }

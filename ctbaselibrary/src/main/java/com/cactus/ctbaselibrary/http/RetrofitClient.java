@@ -3,6 +3,7 @@ package com.cactus.ctbaselibrary.http;
 
 import android.support.annotation.NonNull;
 
+import com.cactus.ctbaselibrary.http.cookie.PersistentCookieStore;
 import com.cactus.ctbaselibrary.utils.StringUtils;
 
 import retrofit2.Retrofit;
@@ -23,7 +24,8 @@ public class RetrofitClient {
 
     public static Retrofit getRetrofit(@NonNull String baseUrl) {
 
-        if (retrofit == null || (HttpConfig.isNeadUserAgent && StringUtils.checkNull(HttpCash.getUserAgent()))) {
+        if (retrofit == null || (HttpConfig.isNeadUserAgent && StringUtils.checkNull(HttpCash.getUserAgent()))
+                || PersistentCookieStore.tokenChange) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(HttpClient.INSTANCE.getOkHttpClient())
@@ -39,7 +41,8 @@ public class RetrofitClient {
     }
 
     public static Retrofit getRetrofitString() {
-        if (retroftString == null || (HttpConfig.isNeadUserAgent && StringUtils.checkNull(HttpCash.getUserAgent()))) {
+        if (retroftString == null || (HttpConfig.isNeadUserAgent && StringUtils.checkNull(HttpCash.getUserAgent()))
+                || PersistentCookieStore.tokenChange) {
             retroftString = new Retrofit.Builder()
                     .baseUrl(HttpConfig.BASE_URL + HttpConfig.API_VERSION)
                     .client(HttpClient.INSTANCE.getOkHttpClient())
