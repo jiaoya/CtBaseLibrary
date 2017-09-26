@@ -2,19 +2,16 @@ package com.cactus.library.demo;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.cactus.ctbaselibrary.GlideApp;
 import com.cactus.ctbaselibrary.base.BaseActivity;
-import com.cactus.ctbaselibrary.http.exception.ServerApiException;
-import com.cactus.ctbaselibrary.http.observer.ServerApiObserve;
 import com.cactus.ctbaselibrary.utils.ToastUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 public class MainActivity extends BaseActivity implements View.OnClickListener {
+
+    String url = "http://image.trc.com/3f/db/3b/aebc38e855cabec354d490985c6f787d98723490.jpg_t.jpg";
+    private ImageView ivTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +22,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initViews() {
         findViewById(R.id.tv_test).setOnClickListener(this);
+        ivTest = (ImageView) findViewById(R.id.iv_test);
     }
 
     @Override
@@ -34,5 +32,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        GlideApp.with(this)
+                .load(url)
+                .into(ivTest);
     }
 }
